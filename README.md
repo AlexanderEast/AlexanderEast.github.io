@@ -1,1 +1,1 @@
-Practice for HTML 
+Practice for hmtl and GitHub Pages.
