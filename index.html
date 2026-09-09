@@ -3,393 +3,615 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Alexander East - Portfolio</title>
+  <title>Alexander East — Senior Scientist I</title>
   <style>
+    :root {
+      --bg: #0a0a0a;
+      --fg: #f4f4f2;
+      --muted: #8a8a86;
+      --line: #2a2a2a;
+      --accent: #f4f4f2;
+    }
+
     * {
       margin: 0;
       padding: 0;
       box-sizing: border-box;
     }
 
+    html {
+      scroll-behavior: smooth;
+    }
+
     body {
-      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-      min-height: 100vh;
-      padding: 20px;
-      color: #333;
+      font-family: 'Helvetica Neue', Arial, sans-serif;
+      background: var(--bg);
+      color: var(--fg);
+      line-height: 1.5;
+      -webkit-font-smoothing: antialiased;
     }
 
-    .container {
-      max-width: 900px;
+    a {
+      color: inherit;
+    }
+
+    .wrap {
+      max-width: 1100px;
       margin: 0 auto;
-      background: white;
-      border-radius: 15px;
-      box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
-      overflow: hidden;
-      animation: slideUp 0.6s ease-out;
+      padding: 0 32px;
     }
 
-    @keyframes slideUp {
-      from {
-        opacity: 0;
-        transform: translateY(30px);
-      }
-      to {
-        opacity: 1;
-        transform: translateY(0);
-      }
+    /* ---------- Nav ---------- */
+    nav {
+      position: sticky;
+      top: 0;
+      z-index: 10;
+      background: rgba(10, 10, 10, 0.85);
+      backdrop-filter: blur(6px);
+      border-bottom: 1px solid var(--line);
     }
 
-    header {
-      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-      color: white;
-      padding: 40px 30px;
-      text-align: center;
-      animation: fadeIn 0.8s ease-out;
-    }
-
-    @keyframes fadeIn {
-      from {
-        opacity: 0;
-      }
-      to {
-        opacity: 1;
-      }
-    }
-
-    header h1 {
-      font-size: 2.5em;
-      margin-bottom: 10px;
-      animation: slideDown 0.6s ease-out;
-    }
-
-    @keyframes slideDown {
-      from {
-        opacity: 0;
-        transform: translateY(-20px);
-      }
-      to {
-        opacity: 1;
-        transform: translateY(0);
-      }
-    }
-
-    header p {
-      font-size: 1.1em;
-      opacity: 0.95;
-      animation: slideDown 0.6s ease-out 0.2s both;
-    }
-
-    .tabs {
+    nav .wrap {
       display: flex;
-      border-bottom: 2px solid #e0e0e0;
-      background: #f9f9f9;
-      animation: slideDown 0.6s ease-out 0.3s both;
+      align-items: center;
+      justify-content: space-between;
+      height: 64px;
     }
 
-    .tab-button {
-      flex: 1;
-      padding: 15px 20px;
-      background: none;
-      border: none;
-      cursor: pointer;
-      font-size: 1em;
-      font-weight: 600;
-      color: #666;
-      transition: all 0.3s ease;
-      position: relative;
+    .nav-name {
+      font-size: 0.95em;
+      letter-spacing: 0.08em;
       text-transform: uppercase;
-      letter-spacing: 0.5px;
+      font-weight: 600;
+      text-decoration: none;
     }
 
-    .tab-button:hover {
-      color: #667eea;
-      background: rgba(102, 126, 234, 0.05);
+    .nav-links {
+      display: flex;
+      gap: 28px;
+      list-style: none;
     }
 
-    .tab-button.active {
-      color: #667eea;
+    .nav-links a {
+      font-size: 0.8em;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      text-decoration: none;
+      color: var(--muted);
+      transition: color 0.25s ease;
     }
 
-    .tab-button.active::after {
-      content: '';
-      position: absolute;
-      bottom: -2px;
-      left: 0;
-      right: 0;
-      height: 3px;
-      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-      animation: slideRight 0.3s ease;
+    .nav-links a:hover {
+      color: var(--fg);
     }
 
-    @keyframes slideRight {
-      from {
-        width: 0;
-        left: 50%;
-      }
-      to {
-        width: 100%;
-        left: 0;
-      }
+    /* ---------- Hero ---------- */
+    header.hero {
+      padding: 140px 0 80px;
+      border-bottom: 1px solid var(--line);
     }
 
-    .tab-content {
-      display: none;
-      padding: 40px 30px;
-      animation: fadeIn 0.4s ease-out;
+    .eyebrow {
+      font-size: 0.8em;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-bottom: 24px;
     }
 
-    .tab-content.active {
+    header.hero h1 {
+      font-size: clamp(2.6em, 8vw, 6.2em);
+      line-height: 0.98;
+      font-weight: 700;
+      letter-spacing: -0.02em;
+      max-width: 16ch;
+    }
+
+    header.hero .role {
+      margin-top: 28px;
+      font-size: clamp(1.1em, 2.4vw, 1.5em);
+      color: var(--muted);
+      max-width: 40ch;
+    }
+
+    /* ---------- Section shell ---------- */
+    section {
+      padding: 90px 0;
+      border-bottom: 1px solid var(--line);
+    }
+
+    .section-head {
+      display: grid;
+      grid-template-columns: 140px 1fr;
+      gap: 40px;
+      margin-bottom: 48px;
+    }
+
+    .section-num {
+      font-size: 0.8em;
+      letter-spacing: 0.15em;
+      color: var(--muted);
+    }
+
+    .section-head h2 {
+      font-size: clamp(1.6em, 4vw, 2.6em);
+      font-weight: 700;
+      letter-spacing: -0.01em;
+    }
+
+    .section-body {
+      display: grid;
+      grid-template-columns: 140px 1fr;
+      gap: 40px;
+    }
+
+    .section-body > .spacer {
       display: block;
     }
 
-    .tab-content h2 {
-      color: #667eea;
-      margin-bottom: 20px;
-      font-size: 2em;
-      animation: slideDown 0.5s ease-out;
+    .lede {
+      font-size: clamp(1.15em, 2.2vw, 1.6em);
+      font-weight: 400;
+      color: var(--fg);
+      max-width: 46ch;
+      letter-spacing: -0.005em;
     }
 
-    .tab-content p {
-      line-height: 1.8;
-      margin-bottom: 15px;
-      color: #555;
-      animation: fadeIn 0.5s ease-out 0.1s both;
+    .lede + p {
+      margin-top: 24px;
     }
 
-    .section {
-      margin-bottom: 30px;
-      animation: fadeIn 0.5s ease-out;
+    p.body-text {
+      color: var(--muted);
+      max-width: 60ch;
+      font-size: 1em;
     }
 
-    .section-title {
-      font-size: 1.3em;
-      font-weight: 700;
-      color: #667eea;
-      margin-top: 25px;
-      margin-bottom: 12px;
-      border-left: 4px solid #667eea;
-      padding-left: 15px;
-    }
-
-    .section-title:first-of-type {
-      margin-top: 0;
-    }
-
-    .experience-item {
-      background: #f9f9f9;
-      padding: 15px;
-      margin-bottom: 15px;
-      border-radius: 8px;
-      border-left: 4px solid #764ba2;
-      transition: all 0.3s ease;
-      animation: slideUp 0.4s ease-out;
-    }
-
-    .experience-item:hover {
-      transform: translateX(5px);
-      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
-    }
-
-    .experience-item strong {
-      color: #667eea;
-    }
-
-    .experience-item em {
-      color: #999;
-      font-size: 0.9em;
-    }
-
-    .links {
+    /* ---------- Industry / expertise tag list ---------- */
+    .tag-list {
       display: flex;
-      gap: 15px;
-      margin-top: 20px;
       flex-wrap: wrap;
-      animation: fadeIn 0.6s ease-out 0.2s both;
+      gap: 12px;
+      margin-top: 32px;
     }
 
-    .btn {
-      display: inline-block;
-      padding: 10px 20px;
-      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-      color: white;
-      text-decoration: none;
-      border-radius: 8px;
-      transition: all 0.3s ease;
-      border: none;
-      cursor: pointer;
-      font-size: 0.95em;
-    }
-
-    .btn:hover {
-      transform: translateY(-2px);
-      box-shadow: 0 10px 20px rgba(102, 126, 234, 0.4);
-    }
-
-    .btn:active {
-      transform: translateY(0);
-    }
-
-    .publication {
-      background: #f9f9f9;
-      padding: 15px;
-      margin-bottom: 15px;
-      border-radius: 8px;
-      border-left: 4px solid #667eea;
-      animation: slideUp 0.4s ease-out;
-    }
-
-    .publication:hover {
-      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
-      transform: translateX(5px);
-      transition: all 0.3s ease;
-    }
-
-    .publication-title {
-      font-weight: 700;
-      color: #667eea;
-      margin-bottom: 5px;
-    }
-
-    .publication-meta {
+    .tag {
+      border: 1px solid var(--line);
+      padding: 8px 18px;
       font-size: 0.85em;
-      color: #999;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+      border-radius: 999px;
+      color: var(--muted);
+      transition: all 0.25s ease;
     }
 
-    footer {
-      background: #f9f9f9;
-      padding: 20px 30px;
-      text-align: center;
-      border-top: 1px solid #e0e0e0;
-      color: #999;
+    .tag:hover {
+      border-color: var(--fg);
+      color: var(--fg);
+    }
+
+    /* ---------- Numbered rows (experience / education / associations) ---------- */
+    .row-list {
+      grid-column: 2 / 3;
+    }
+
+    .row {
+      display: grid;
+      grid-template-columns: 90px 1fr auto;
+      gap: 24px;
+      align-items: baseline;
+      padding: 28px 0;
+      border-top: 1px solid var(--line);
+      transition: opacity 0.25s ease;
+    }
+
+    .row:first-child {
+      border-top: none;
+    }
+
+    .row-index {
+      font-size: 0.8em;
+      color: var(--muted);
+      letter-spacing: 0.1em;
+    }
+
+    .row-title {
+      font-size: 1.15em;
+      font-weight: 600;
+    }
+
+    .row-sub {
+      display: block;
+      margin-top: 6px;
+      color: var(--muted);
       font-size: 0.9em;
-      animation: fadeIn 0.6s ease-out 0.4s both;
+      font-weight: 400;
     }
 
-    @media (max-width: 600px) {
-      header h1 {
-        font-size: 1.8em;
+    .row-meta {
+      color: var(--muted);
+      font-size: 0.85em;
+      text-align: right;
+      white-space: nowrap;
+    }
+
+    .row-desc {
+      grid-column: 2 / 3;
+      margin-top: 12px;
+      color: var(--muted);
+      font-size: 0.95em;
+      max-width: 65ch;
+    }
+
+    /* ---------- Publications ---------- */
+    .pub-list {
+      grid-column: 2 / 3;
+    }
+
+    .pub {
+      padding: 24px 0;
+      border-top: 1px solid var(--line);
+    }
+
+    .pub:first-child {
+      border-top: none;
+    }
+
+    .pub-title {
+      font-size: 1.02em;
+      font-weight: 600;
+      margin-bottom: 8px;
+    }
+
+    .pub-meta {
+      color: var(--muted);
+      font-size: 0.85em;
+    }
+
+    /* ---------- Contact / footer ---------- */
+    footer {
+      padding: 90px 0 60px;
+    }
+
+    footer h2 {
+      font-size: clamp(1.8em, 5vw, 3.2em);
+      font-weight: 700;
+      letter-spacing: -0.02em;
+      max-width: 18ch;
+      margin-bottom: 40px;
+    }
+
+    .contact-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 32px;
+      margin-bottom: 60px;
+    }
+
+    .contact-label {
+      font-size: 0.75em;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-bottom: 10px;
+    }
+
+    .contact-value {
+      font-size: 1.05em;
+    }
+
+    .contact-value a {
+      text-decoration: none;
+      border-bottom: 1px solid var(--line);
+    }
+
+    .contact-value a:hover {
+      border-color: var(--fg);
+    }
+
+    .copyright {
+      color: var(--muted);
+      font-size: 0.8em;
+      border-top: 1px solid var(--line);
+      padding-top: 24px;
+    }
+
+    @media (max-width: 720px) {
+      .section-head,
+      .section-body,
+      .row {
+        grid-template-columns: 1fr;
+        gap: 12px;
       }
 
-      .tab-button {
-        font-size: 0.85em;
-        padding: 12px 10px;
+      .row-meta {
+        text-align: left;
       }
 
-      .tab-content {
-        padding: 25px 15px;
-      }
-
-      .tab-content h2 {
-        font-size: 1.5em;
+      .row-desc {
+        grid-column: 1 / -1;
       }
     }
   </style>
 </head>
 <body>
 
-<div class="container">
-  <header>
-    <h1>Alexander East</h1>
-    <p>Professional Portfolio & Research</p>
+  <nav>
+    <div class="wrap">
+      <a class="nav-name" href="#top">Alexander East</a>
+      <ul class="nav-links">
+        <li><a href="#profile">Profile</a></li>
+        <li><a href="#expertise">Expertise</a></li>
+        <li><a href="#experience">Experience</a></li>
+        <li><a href="#education">Education</a></li>
+        <li><a href="#manuscripts">Manuscripts</a></li>
+        <li><a href="#presentations">Presentations</a></li>
+        <li><a href="#contact">Contact</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <header class="hero" id="top">
+    <div class="wrap">
+      <div class="eyebrow">ToxStrategies — A BlueRidge Life Sciences Company</div>
+      <h1>Alexander East, B.S.</h1>
+      <p class="role">Senior Scientist I — Exposure Sciences. Computational exposure, population dynamics, and residential scenario modeling.</p>
+    </div>
   </header>
 
-  <div class="tabs">
-    <button class="tab-button active" onclick="showTab(0)">About Me</button>
-    <button class="tab-button" onclick="showTab(1)">Publications</button>
-  </div>
-
-  <!-- About Me Tab -->
-  <div class="tab-content active" id="tab-0">
-    <h2>About Me</h2>
-    <p>Welcome to my professional portfolio. I'm Alexander East, a dedicated professional with expertise in various fields and a passion for innovation and research.</p>
-
-    <div class="section">
-      <div class="section-title">Professional Background</div>
-      <p>With a strong foundation in analytical and strategic work, I bring a comprehensive approach to problem-solving and research. My career has been marked by a commitment to delivering quality insights and driving meaningful change across organizations.</p>
-    </div>
-
-    <div class="section">
-      <div class="section-title">Experience</div>
-      <div class="experience-item">
-        <strong>Strategic Research & Analysis</strong>
-        <br><em>ToxStrategies</em>
-        <p>Contributing expertise in company research and professional development, with a focus on comprehensive analysis and strategic planning.</p>
+  <section id="profile">
+    <div class="wrap">
+      <div class="section-head">
+        <div class="section-num">01 — Profile</div>
+        <h2>Thesis</h2>
+      </div>
+      <div class="section-body">
+        <div class="spacer"></div>
+        <div>
+          <p class="lede">Alexander East is an environmental scientist in ToxStrategies' Exposure Sciences practice, specializing in computational exposure with a focus on population dynamics and residential scenarios.</p>
+          <p class="body-text">His work is complemented by practical experience in both laboratory procedures and field work. Mr. East received a bachelor's degree in Environmental Policy and Management, participating in the university Honors Program and graduating with distinction in Environmental Studies. He has since worked in both a governmental regulatory agency (computational toxicology) and the private sector (laboratory setting).</p>
+          <p class="body-text" style="margin-top:16px;">His skill set includes R (statistical approaches, data curation, ggplot, meta-analysis), Python (AI, machine learning), and geographic information system (GIS) software. Relevant and recent analyses include benchmark dose calculations, random and fixed effects modeling, and refinement of existing systematic review approaches. Since 2020, Mr. East has presented two posters and spoken at two symposiums at scientific conferences, and has first-authored three manuscripts in scientific journals, with a fourth currently under review.</p>
+        </div>
       </div>
     </div>
+  </section>
 
-    <div class="section">
-      <div class="section-title">Skills & Expertise</div>
-      <p>
-        • Data Analysis & Visualization<br>
-        • Research & Strategic Planning<br>
-        • Technical & Scientific Writing<br>
-        • Project Management<br>
-        • Collaborative Problem Solving
-      </p>
-    </div>
-
-    <div class="section">
-      <div class="section-title">Education</div>
-      <p>B.S. degree with comprehensive training in analytical and research methodologies.</p>
-    </div>
-
-    <div class="section">
-      <div class="section-title">Projects & Examples</div>
-      <div class="links">
-        <a href="https://alexandereast.github.io/examplechordplot.html" class="btn">Example Chord Plot</a>
+  <section id="expertise">
+    <div class="wrap">
+      <div class="section-head">
+        <div class="section-num">02 — Expertise</div>
+        <h2>Industry &amp; Skills</h2>
+      </div>
+      <div class="section-body">
+        <div class="spacer"></div>
+        <div>
+          <p class="body-text">Core disciplines and tools applied across exposure science, computational toxicology, and laboratory analysis.</p>
+          <div class="tag-list">
+            <span class="tag">Computational Exposure</span>
+            <span class="tag">R / ggplot</span>
+            <span class="tag">Python / AI &amp; ML</span>
+            <span class="tag">GIS</span>
+            <span class="tag">Benchmark Dose Modeling</span>
+            <span class="tag">Random &amp; Fixed Effects Modeling</span>
+            <span class="tag">Systematic Review</span>
+            <span class="tag">Meta-Analysis</span>
+            <span class="tag">Polarized Light Microscopy</span>
+            <span class="tag">Population Modeling</span>
+          </div>
+        </div>
       </div>
     </div>
-  </div>
+  </section>
 
-  <!-- Publications Tab -->
-  <div class="tab-content" id="tab-1">
-    <h2>Publications & Work</h2>
-    <p>A selection of recent research, projects, and professional contributions.</p>
-
-    <div class="section">
-      <div class="section-title">Research & Analysis</div>
-      <div class="publication">
-        <div class="publication-title">Strategic Data Visualization</div>
-        <div class="publication-meta">Interactive Analysis Project</div>
-        <p>Development of interactive chord plots and data visualization tools for complex relationship analysis.</p>
+  <section id="associations">
+    <div class="wrap">
+      <div class="section-head">
+        <div class="section-num">03 — Associations</div>
+        <h2>Professional Associations</h2>
       </div>
-      <div class="publication">
-        <div class="publication-title">Analytical Research Contributions</div>
-        <div class="publication-meta">Professional Work</div>
-        <p>Contributions to strategic research and analysis at ToxStrategies, focusing on comprehensive company insights and professional assessment.</p>
-      </div>
-    </div>
-
-    <div class="section">
-      <div class="section-title">Technical Projects</div>
-      <div class="publication">
-        <div class="publication-title">Interactive Visualization Examples</div>
-        <div class="publication-meta">Web Development</div>
-        <p>Creation of web-based analytical tools and visualizations demonstrating data analysis capabilities.</p>
+      <div class="section-body">
+        <div class="spacer"></div>
+        <div class="row-list">
+          <div class="row">
+            <div class="row-index">2022—2025</div>
+            <div class="row-title">International Society of Exposure Science (ISES)</div>
+            <div class="row-meta"></div>
+          </div>
+        </div>
       </div>
     </div>
-  </div>
+  </section>
 
-  <footer>
-    <p>&copy; 2026 Alexander East. All rights reserved.</p>
+  <section id="experience">
+    <div class="wrap">
+      <div class="section-head">
+        <div class="section-num">04 — Experience</div>
+        <h2>Selected Professional Experience</h2>
+      </div>
+      <div class="section-body">
+        <div class="spacer"></div>
+        <div class="row-list">
+          <div class="row">
+            <div class="row-index">01</div>
+            <div class="row-title">Research Scientist<span class="row-sub">ToxStrategies</span></div>
+            <div class="row-meta">ToxStrategies</div>
+            <div class="row-desc">
+              Estimated exposures to PFOA and PFOS for American adults and children from dust, water, indoor and outdoor air, soil, and dietary intake. Developed an R package to estimate concentrations from limited summary statistics and generate synthetic exposure curves for any chemical, individual, and medium. Enhanced the Residential Population Generator (RPGen), improving ease of use, runtime, and distribution, and presented benefits versus SHEDS-HT in a published manuscript. Drove a systematic review of PBPK models used for PFAS in literature, leveraging the R package Bibliometrix to characterize change in the corpus of literature over time. Presented posters at SOT 2022 and SETAC 2020, and symposiums at ISES 2021 and ISES 2024.
+            </div>
+          </div>
+          <div class="row">
+            <div class="row-index">02</div>
+            <div class="row-title">Laboratory Analyst<span class="row-sub">NVLAP-Accredited Laboratory</span></div>
+            <div class="row-meta"></div>
+            <div class="row-desc">
+              Used polarized light microscopy (PLM) to analyze building materials using EPA Method 600 for the purpose of identifying asbestiform fibers at &lt;1% mass or less. Performed point counts in low-percentage asbestos materials and analyzed heat-altered asbestos from the 2019 California wildfires.
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="education">
+    <div class="wrap">
+      <div class="section-head">
+        <div class="section-num">05 — Education</div>
+        <h2>Education &amp; Degrees Earned</h2>
+      </div>
+      <div class="section-body">
+        <div class="spacer"></div>
+        <div class="row-list">
+          <div class="row">
+            <div class="row-index">2018</div>
+            <div class="row-title">B.S., Environmental Policy and Management<span class="row-sub">Minors in Mathematics and Economics — University of North Carolina at Asheville</span></div>
+            <div class="row-meta"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="manuscripts">
+    <div class="wrap">
+      <div class="section-head">
+        <div class="section-num">06 — Manuscripts</div>
+        <h2>Manuscripts</h2>
+      </div>
+      <div class="section-body">
+        <div class="spacer"></div>
+        <div class="pub-list">
+          <div class="pub">
+            <div class="pub-title">Smoke flavoring—A case study demonstrating the value of using benefit-risk analysis for foods (BRAFO) to provide transparency for risk management decisions</div>
+            <div class="pub-meta">Doepker C, Franzen A, Brorby G, Brown L, Choksi N, East A, Wikoff D. 2026. Regul Toxicol Pharmacol 167(May):106033; doi: 10.1016/j.yrtph.2026.106033. PMID: 41577161.</div>
+          </div>
+          <div class="pub">
+            <div class="pub-title">Comparison of phenotypic and transcriptomic profiles between HFPO-DA and prototypical PPARα, PPARγ, and cytotoxic agents in wild-type and Pparα-null mouse livers</div>
+            <div class="pub-meta">Heintz MM, Buerger AN, Haws LC, Cullen JM, East AW, Thompson CM. 2025. Toxicol Sci 206(1):183-201; doi: 10.1093/toxsci/kfaf049. PMID: 40216583.</div>
+          </div>
+          <div class="pub">
+            <div class="pub-title">Comparison of transcriptomic profiles between HFPO-DA and prototypical PPARα, PPARγ, and cytotoxic agents in wild-type and PPARα knockout mouse hepatocytes</div>
+            <div class="pub-meta">Heintz MM, Klaren WD, East AW, Haws LC, McGreal SR, Campbell RR, Thompson CM. 2024. Toxicol Sci 200(1):183–198; doi: 10.1093/toxsci/kfae045. PMID: 38574385.</div>
+          </div>
+          <div class="pub">
+            <div class="pub-title">Comparison of transcriptomic profiles between HFPO-DA and prototypical PPARα, PPARγ, and cytotoxic agents in mouse, rat, and pooled human hepatocytes</div>
+            <div class="pub-meta">Heintz MM, Klaren WD, East AW, Haws LC, McGreal SR, Campbell RR, Thompson CM. 2024. Toxicol Sci 200(1):165–182; doi: 10.1093/toxsci/kfae044. PMID: 38574381.</div>
+          </div>
+          <div class="pub">
+            <div class="pub-title">A scoping assessment of implemented toxicokinetic models of per- and polyfluoro-alkyl substances, with a focus on one-compartment models</div>
+            <div class="pub-meta">East A, Dawson DE, Brady S, Vallero DA, Tornero-Velez R. 2023. Toxics 11(2):163; doi: 10.3390/toxics11020163. PMID: 36851038.</div>
+          </div>
+          <div class="pub">
+            <div class="pub-title">Computational estimates of daily aggregate exposure to PFOA/PFOS from 2011 to 2017 using a basic intake model</div>
+            <div class="pub-meta">East A, Egeghy PP, Cohen Hubal EA, Slover R, Vallero DA. 2023. J Expos Sci Environ Epidemiol 33(1):56-68; doi: 10.1038/s41370-021-00374-w. PMID: 34373583.</div>
+          </div>
+          <div class="pub">
+            <div class="pub-title">The Residential Population Generator (RPGen): Parameterization of residential, demographic, and physiological data to model intraindividual exposure, dose, and risk</div>
+            <div class="pub-meta">East A, Dawson D, Glen G, Isaacs K, Dionisio K, Price PS, et al. 2021. Toxics 9(11):303; doi: 10.3390/toxics9110303. PMID: 34822694.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="presentations">
+    <div class="wrap">
+      <div class="section-head">
+        <div class="section-num">07 — Presentations</div>
+        <h2>Abstracts &amp; Presentations</h2>
+      </div>
+      <div class="section-body">
+        <div class="spacer"></div>
+        <div class="pub-list">
+          <div class="pub">
+            <div class="pub-title">Probabilistic estimation of daily total nitrosamine exposures generated from drinking water and dietary nitrate and nitrate sources</div>
+            <div class="pub-meta">Klaren WD, East A, Wheeler M, Vincent M, Wikoff DS, Covington T. Abstract 3982, Society of Toxicology 65th Annual Meeting, San Diego, CA, March 2026.</div>
+          </div>
+          <div class="pub">
+            <div class="pub-title">Investigating the feasibility of deriving a new environmentally relevant Thresholds of Toxicological Concern (TTCs) from estimated human equivalent benchmark dose (eBMDHED) values</div>
+            <div class="pub-meta">Patlewicz G, Mihalchik A, Thompson CM, East A, Borghoff S. Abstract 4013, Society of Toxicology 65th Annual Meeting, San Diego, CA, March 2026.</div>
+          </div>
+          <div class="pub">
+            <div class="pub-title">Artificial intelligence application to critical appraisal of published literature: A case example using the Criteria for Reporting and Evaluating Ecotoxicity Data (CRED) evaluation method</div>
+            <div class="pub-meta">East A, Wheeler M, Kennedy S. Poster presentation, Health and Environmental Sciences Institute (HESI) Biannual Meeting, Washington, DC, June 2025.</div>
+          </div>
+          <div class="pub">
+            <div class="pub-title">Comparison of phenotypic and transcriptomic profiles between HFPO-DA and prototypical PPARα, PPARγ, and cytotoxic agents in wild-type and PPARα knockout mice</div>
+            <div class="pub-meta">Heintz MM, Buerger AN, Haws LC, East AW, Cullen JM, Thompson CM. Abstract 3972, Society of Toxicology 64th Annual Meeting, Orlando, FL, March 2025.</div>
+          </div>
+          <div class="pub">
+            <div class="pub-title">Exploring biomarker-based methods to incorporate non-chemical stressor exposures into cumulative assessments for potentially vulnerable population groups</div>
+            <div class="pub-meta">East A, Klaren W, Covington T, Rish W. International Society of Exposure Science Annual Meeting, Montreal, Canada, October 2024.</div>
+          </div>
+          <div class="pub">
+            <div class="pub-title">Delayed transcriptomic responses in PPARa knockout mouse hepatocytes compared to wild-type hepatocytes exposed to HFPO-DA or PPARa agonist GW7647: Support for a PPARa-dependent mode of action for HFPO-DA in mouse hepatocytes</div>
+            <div class="pub-meta">Heintz M, Klaren W, East A, Haws L, Thompson C. Abstract 4100, Society of Toxicology 63rd Annual Meeting, Salt Lake City, UT, March 2024.</div>
+          </div>
+          <div class="pub">
+            <div class="pub-title">Using NHANES data to characterize the magnitude of allostatic load in vulnerable communities: Impact to existing risk assessment uncertainty/variability factors</div>
+            <div class="pub-meta">East A, Rish W, Klaren WD. Poster presented at Society of Toxicology 62nd Annual Meeting, Nashville, TN, March 2023.</div>
+          </div>
+          <div class="pub">
+            <div class="pub-title">In vitro transcriptomic analyses informing the mode of action of HFPO-DA (GenX) in the liver</div>
+            <div class="pub-meta">Klaren WD, Heintz MM, East AW, Thompson CM, Haws LC. Poster presented at Society of Toxicology 62nd Annual Meeting, Nashville, TN, March 2023.</div>
+          </div>
+          <div class="pub">
+            <div class="pub-title">Estimating exposure across chemical, individual, and media using sparse summary statistics with the Lorber-Egeghy-East Method R Package</div>
+            <div class="pub-meta">East A, Dalton C, Egeghy P, Vallero D. Poster presented at Society of Toxicology 61st Annual Meeting, San Diego, CA, March 2022; doi: 10.23645/epacomptox.20110814.</div>
+          </div>
+          <div class="pub">
+            <div class="pub-title">Using systematic evidence mapping to track the development of toxicokinetic models of PFAS from 2000–2021</div>
+            <div class="pub-meta">Tornero-Velez R, Dawson D, East A, Breen M, Brady S, Vallero D, Hubal EC, Wambaugh J. Poster presented at Society of Toxicology 61st Annual Meeting, San Diego, CA, March 2022; doi: 10.23645/epacomptox.19333283.</div>
+          </div>
+          <div class="pub">
+            <div class="pub-title">The role of product use scheduler for estimating exposure to methyl, ethyl, propyl, and butyl parabenzoic acid (parabens) within the Combined Human Exposure Model</div>
+            <div class="pub-meta">Dalton C, East A, Price P, Vallero D. Poster presented at Society of Toxicology 61st Annual Meeting, San Diego, CA, March 2022; doi: 10.23645/epacomptox.1934935.</div>
+          </div>
+          <div class="pub">
+            <div class="pub-title">Estimating longitudinal aggregate exposure — The third module of CHEM: Source to dose</div>
+            <div class="pub-meta">Fisher H, East A, Vallero D. Symposium presented at International Society of Exposure Science Annual Meeting, virtual conference, September 2021; doi: 10.23645/epacomptox.16630675.</div>
+          </div>
+          <div class="pub">
+            <div class="pub-title">The role of the Product Use Scheduler (PUS) in determining product use categories (PUCs) for owners and renters in the Combined Human Exposure Model (CHEM)</div>
+            <div class="pub-meta">East A, Brady S, Isaacs K, Vallero D. Symposium presented at International Society of Exposure Science Annual Meeting, virtual conference, September 2021; doi: 10.23645/epacomptox.16632271.</div>
+          </div>
+          <div class="pub">
+            <div class="pub-title">Application of the Residential Population Generator (RPGen) in prediction of exposure outcomes for owners and renters from consumer products using the Combined Human Exposure Model (CHEM)</div>
+            <div class="pub-meta">East A, Isaacs K, Vallero D. Symposium presented at International Society of Exposure Science Annual Meeting, virtual conference, September 2021; doi: 10.23645/epacomptox.16632319.</div>
+          </div>
+          <div class="pub">
+            <div class="pub-title">The Residential Population Generator (RPGen): Parameterization of residential, demographic, and physiological data to model intraindividual exposure, dose, and risk</div>
+            <div class="pub-meta">East A, Price P, Dawson D, Glen G, Dionisio K, Isaacs K, Hubal EC, Vallero D. Poster presented at Society of Environmental Toxicology and Chemistry North America 41st Annual Meeting, virtual conference, 2020; doi: 10.23645/epacomptox.13476864.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <footer id="contact">
+    <div class="wrap">
+      <h2>Get in touch.</h2>
+      <div class="contact-grid">
+        <div>
+          <div class="contact-label">Company</div>
+          <div class="contact-value">ToxStrategies, A BlueRidge Life Sciences Company</div>
+        </div>
+        <div>
+          <div class="contact-label">Address</div>
+          <div class="contact-value">31 College Place, Suite 118<br>Asheville, NC 28801</div>
+        </div>
+        <div>
+          <div class="contact-label">Phone</div>
+          <div class="contact-value"><a href="tel:+19199610909">(919) 961-0909</a></div>
+        </div>
+        <div>
+          <div class="contact-label">Email</div>
+          <div class="contact-value"><a href="mailto:aeast@toxstrategies.com">aeast@toxstrategies.com</a></div>
+        </div>
+      </div>
+      <p class="copyright">&copy; 2026 Alexander East. All rights reserved.</p>
+    </div>
   </footer>
-</div>
-
-<script>
-  function showTab(index) {
-    // Hide all tabs
-    const tabs = document.querySelectorAll('.tab-content');
-    const buttons = document.querySelectorAll('.tab-button');
-    
-    tabs.forEach(tab => tab.classList.remove('active'));
-    buttons.forEach(btn => btn.classList.remove('active'));
-    
-    // Show selected tab
-    document.getElementById(`tab-${index}`).classList.add('active');
-    buttons[index].classList.add('active');
-  }
-</script>
 
 </body>
 </html>
