@@ -1,43 +1,395 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
-<html>
+<!DOCTYPE html>
+<html lang="en">
 <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-  <meta http-equiv="Content-Style-Type" content="text/css">
-  <title>Protected Page</title>
-  <meta name="Generator" content="Cocoa HTML Writer">
-  <meta name="CocoaVersion" content="2113.5">
-  <style type="text/css">
-    body { font-family: Times; }
-    #content { display: none; }
-    #passwordPrompt { margin-top: 50px; text-align: center; }
-    input[type="password"] { font-size: 14px; }
-    button { font-size: 14px; }
-  </style>
-  <script>
-    function checkPassword() {
-      const password = document.getElementById("password").value;
-      if (password === "asheville") {
-        document.getElementById("passwordPrompt").style.display = "none";
-        document.getElementById("content").style.display = "block";
-      } else {
-        alert("Incorrect password.");
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Alexander East - Portfolio</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      min-height: 100vh;
+      padding: 20px;
+      color: #333;
+    }
+
+    .container {
+      max-width: 900px;
+      margin: 0 auto;
+      background: white;
+      border-radius: 15px;
+      box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+      overflow: hidden;
+      animation: slideUp 0.6s ease-out;
+    }
+
+    @keyframes slideUp {
+      from {
+        opacity: 0;
+        transform: translateY(30px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
       }
     }
-  </script>
+
+    header {
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      color: white;
+      padding: 40px 30px;
+      text-align: center;
+      animation: fadeIn 0.8s ease-out;
+    }
+
+    @keyframes fadeIn {
+      from {
+        opacity: 0;
+      }
+      to {
+        opacity: 1;
+      }
+    }
+
+    header h1 {
+      font-size: 2.5em;
+      margin-bottom: 10px;
+      animation: slideDown 0.6s ease-out;
+    }
+
+    @keyframes slideDown {
+      from {
+        opacity: 0;
+        transform: translateY(-20px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    header p {
+      font-size: 1.1em;
+      opacity: 0.95;
+      animation: slideDown 0.6s ease-out 0.2s both;
+    }
+
+    .tabs {
+      display: flex;
+      border-bottom: 2px solid #e0e0e0;
+      background: #f9f9f9;
+      animation: slideDown 0.6s ease-out 0.3s both;
+    }
+
+    .tab-button {
+      flex: 1;
+      padding: 15px 20px;
+      background: none;
+      border: none;
+      cursor: pointer;
+      font-size: 1em;
+      font-weight: 600;
+      color: #666;
+      transition: all 0.3s ease;
+      position: relative;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+
+    .tab-button:hover {
+      color: #667eea;
+      background: rgba(102, 126, 234, 0.05);
+    }
+
+    .tab-button.active {
+      color: #667eea;
+    }
+
+    .tab-button.active::after {
+      content: '';
+      position: absolute;
+      bottom: -2px;
+      left: 0;
+      right: 0;
+      height: 3px;
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      animation: slideRight 0.3s ease;
+    }
+
+    @keyframes slideRight {
+      from {
+        width: 0;
+        left: 50%;
+      }
+      to {
+        width: 100%;
+        left: 0;
+      }
+    }
+
+    .tab-content {
+      display: none;
+      padding: 40px 30px;
+      animation: fadeIn 0.4s ease-out;
+    }
+
+    .tab-content.active {
+      display: block;
+    }
+
+    .tab-content h2 {
+      color: #667eea;
+      margin-bottom: 20px;
+      font-size: 2em;
+      animation: slideDown 0.5s ease-out;
+    }
+
+    .tab-content p {
+      line-height: 1.8;
+      margin-bottom: 15px;
+      color: #555;
+      animation: fadeIn 0.5s ease-out 0.1s both;
+    }
+
+    .section {
+      margin-bottom: 30px;
+      animation: fadeIn 0.5s ease-out;
+    }
+
+    .section-title {
+      font-size: 1.3em;
+      font-weight: 700;
+      color: #667eea;
+      margin-top: 25px;
+      margin-bottom: 12px;
+      border-left: 4px solid #667eea;
+      padding-left: 15px;
+    }
+
+    .section-title:first-of-type {
+      margin-top: 0;
+    }
+
+    .experience-item {
+      background: #f9f9f9;
+      padding: 15px;
+      margin-bottom: 15px;
+      border-radius: 8px;
+      border-left: 4px solid #764ba2;
+      transition: all 0.3s ease;
+      animation: slideUp 0.4s ease-out;
+    }
+
+    .experience-item:hover {
+      transform: translateX(5px);
+      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+    }
+
+    .experience-item strong {
+      color: #667eea;
+    }
+
+    .experience-item em {
+      color: #999;
+      font-size: 0.9em;
+    }
+
+    .links {
+      display: flex;
+      gap: 15px;
+      margin-top: 20px;
+      flex-wrap: wrap;
+      animation: fadeIn 0.6s ease-out 0.2s both;
+    }
+
+    .btn {
+      display: inline-block;
+      padding: 10px 20px;
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      color: white;
+      text-decoration: none;
+      border-radius: 8px;
+      transition: all 0.3s ease;
+      border: none;
+      cursor: pointer;
+      font-size: 0.95em;
+    }
+
+    .btn:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 10px 20px rgba(102, 126, 234, 0.4);
+    }
+
+    .btn:active {
+      transform: translateY(0);
+    }
+
+    .publication {
+      background: #f9f9f9;
+      padding: 15px;
+      margin-bottom: 15px;
+      border-radius: 8px;
+      border-left: 4px solid #667eea;
+      animation: slideUp 0.4s ease-out;
+    }
+
+    .publication:hover {
+      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+      transform: translateX(5px);
+      transition: all 0.3s ease;
+    }
+
+    .publication-title {
+      font-weight: 700;
+      color: #667eea;
+      margin-bottom: 5px;
+    }
+
+    .publication-meta {
+      font-size: 0.85em;
+      color: #999;
+    }
+
+    footer {
+      background: #f9f9f9;
+      padding: 20px 30px;
+      text-align: center;
+      border-top: 1px solid #e0e0e0;
+      color: #999;
+      font-size: 0.9em;
+      animation: fadeIn 0.6s ease-out 0.4s both;
+    }
+
+    @media (max-width: 600px) {
+      header h1 {
+        font-size: 1.8em;
+      }
+
+      .tab-button {
+        font-size: 0.85em;
+        padding: 12px 10px;
+      }
+
+      .tab-content {
+        padding: 25px 15px;
+      }
+
+      .tab-content h2 {
+        font-size: 1.5em;
+      }
+    }
+  </style>
 </head>
 <body>
 
-<div id="passwordPrompt">
-  <h2>Enter the password:</h2>
-  <input type="password" id="password" />
-  <button onclick="checkPassword()">Submit</button>
+<div class="container">
+  <header>
+    <h1>Alexander East</h1>
+    <p>Professional Portfolio & Research</p>
+  </header>
+
+  <div class="tabs">
+    <button class="tab-button active" onclick="showTab(0)">About Me</button>
+    <button class="tab-button" onclick="showTab(1)">Publications</button>
+  </div>
+
+  <!-- About Me Tab -->
+  <div class="tab-content active" id="tab-0">
+    <h2>About Me</h2>
+    <p>Welcome to my professional portfolio. I'm Alexander East, a dedicated professional with expertise in various fields and a passion for innovation and research.</p>
+
+    <div class="section">
+      <div class="section-title">Professional Background</div>
+      <p>With a strong foundation in analytical and strategic work, I bring a comprehensive approach to problem-solving and research. My career has been marked by a commitment to delivering quality insights and driving meaningful change across organizations.</p>
+    </div>
+
+    <div class="section">
+      <div class="section-title">Experience</div>
+      <div class="experience-item">
+        <strong>Strategic Research & Analysis</strong>
+        <br><em>ToxStrategies</em>
+        <p>Contributing expertise in company research and professional development, with a focus on comprehensive analysis and strategic planning.</p>
+      </div>
+    </div>
+
+    <div class="section">
+      <div class="section-title">Skills & Expertise</div>
+      <p>
+        • Data Analysis & Visualization<br>
+        • Research & Strategic Planning<br>
+        • Technical & Scientific Writing<br>
+        • Project Management<br>
+        • Collaborative Problem Solving
+      </p>
+    </div>
+
+    <div class="section">
+      <div class="section-title">Education</div>
+      <p>B.S. degree with comprehensive training in analytical and research methodologies.</p>
+    </div>
+
+    <div class="section">
+      <div class="section-title">Projects & Examples</div>
+      <div class="links">
+        <a href="https://alexandereast.github.io/examplechordplot.html" class="btn">Example Chord Plot</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- Publications Tab -->
+  <div class="tab-content" id="tab-1">
+    <h2>Publications & Work</h2>
+    <p>A selection of recent research, projects, and professional contributions.</p>
+
+    <div class="section">
+      <div class="section-title">Research & Analysis</div>
+      <div class="publication">
+        <div class="publication-title">Strategic Data Visualization</div>
+        <div class="publication-meta">Interactive Analysis Project</div>
+        <p>Development of interactive chord plots and data visualization tools for complex relationship analysis.</p>
+      </div>
+      <div class="publication">
+        <div class="publication-title">Analytical Research Contributions</div>
+        <div class="publication-meta">Professional Work</div>
+        <p>Contributions to strategic research and analysis at ToxStrategies, focusing on comprehensive company insights and professional assessment.</p>
+      </div>
+    </div>
+
+    <div class="section">
+      <div class="section-title">Technical Projects</div>
+      <div class="publication">
+        <div class="publication-title">Interactive Visualization Examples</div>
+        <div class="publication-meta">Web Development</div>
+        <p>Creation of web-based analytical tools and visualizations demonstrating data analysis capabilities.</p>
+      </div>
+    </div>
+  </div>
+
+  <footer>
+    <p>&copy; 2026 Alexander East. All rights reserved.</p>
+  </footer>
 </div>
 
-<div id="content">
-  <h1><b>First try of html using Github.io</b></h1>
-  <p>Test page.</p>
-  <p><a href="https://alexandereast.github.io/examplechordplot.html">Example Chord Plot</a></p>
-</div>
+<script>
+  function showTab(index) {
+    // Hide all tabs
+    const tabs = document.querySelectorAll('.tab-content');
+    const buttons = document.querySelectorAll('.tab-button');
+    
+    tabs.forEach(tab => tab.classList.remove('active'));
+    buttons.forEach(btn => btn.classList.remove('active'));
+    
+    // Show selected tab
+    document.getElementById(`tab-${index}`).classList.add('active');
+    buttons[index].classList.add('active');
+  }
+</script>
 
 </body>
 </html>
